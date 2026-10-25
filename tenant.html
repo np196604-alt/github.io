@@ -7,22 +7,46 @@
 <header class="top"><div class="in"><a class="logo" href="index.html">ИнгоАренда</a>
 <nav><a href="landlord.html">Кабинет собственника</a><a href="index.html">На главную</a></nav></div></header>
 <main>
-<h1>Кабинет арендатора</h1><p class="sub">Алексей К. · демо-данные</p>
+<h1>Моя ИнгоАренда</h1><p class="sub">Алексей К. · демо-данные</p>
 <div class="grid">
-<div class="card"><div class="k">Подписка в месяц</div><div class="v" id="price"></div></div>
-<div class="card"><div class="k">Следующий платёж</div><div class="v" id="next"></div></div>
+<div class="card"><div class="k">Накоплено</div><div class="v" id="saved"></div></div>
+<div class="card"><div class="k">Следующий платёж</div><div class="v" id="next"></div><div class="k" id="price"></div></div>
 <div class="card"><div class="k">Статус</div><div style="margin-top:8px"><span id="status"></span></div></div>
 </div>
-<div class="card"><h2>Моя квартира</h2><p id="addr"></p><p class="k" id="rent"></p>
-<p class="k" style="margin-top:8px">Гарантия для собственника: <b id="guar"></b></p></div>
+<div class="card"><h2>Договор</h2><p id="addr"></p><p class="k" id="rentline"></p>
+<p class="k" style="margin-top:8px">Внесено за всё время: <b id="paid"></b> · Защита собственника: <b id="cover"></b></p></div>
+<div class="card"><h2>Настройте финансовую защиту</h2>
+<label for="mon">Ежемесячный платёж <span class="v" style="font-size:16px;float:right" id="monV"></span></label>
+<input id="mon" type="range" min="2000" max="3000" step="100">
+<div class="plans">
+<label><input type="radio" name="plan" id="planFull" value="full"><span><b>Полная компенсация</b><br><span class="k">Аренда выплачивается целиком, срок короче</span></span></label>
+<label><input type="radio" name="plan" id="planPart" value="part"><span><b>Частичная компенсация</b><br><span class="k">Половина аренды, срок вдвое дольше</span></span></label></div>
+<p><b id="planOut"></b></p>
+<p class="k">Прогноз возврата в конце договора: <b id="forecast"></b></p>
+<p class="note">Покрытие и доли платежа — допущения. Итоговые условия рассчитывает Ингосстрах.</p></div>
 <div class="card"><h2>Управление подпиской</h2>
 <div class="row"><button class="btn" id="pay">Оплатить сейчас</button>
 <label style="margin:0;display:flex;gap:8px;align-items:center"><input type="checkbox" id="autopay"> Автоплатёж</label>
-<button class="btn alt" id="end">Завершить подписку</button></div>
+<button class="btn alt" id="end">Закрыть досрочно</button></div>
+<p class="k" style="margin-top:10px">При досрочном закрытии к возврату: <b id="early"></b> (с удержанием по условиям договора)</p>
 <p class="msg" id="msg" role="status"></p></div>
+<div class="two">
+<div class="card"><h2>Коммунальные платежи</h2>
+<ul class="claims" id="bills"></ul>
+<form id="billForm" novalidate><label for="billT">Услуга</label><input id="billT" type="text" placeholder="Вода, ноябрь">
+<label for="billA">Сумма, ₽</label><input id="billA" type="number" min="1">
+<label for="billF">Чек</label><input id="billF" type="file">
+<div class="row" style="margin-top:12px"><button class="btn" type="submit">Добавить чек</button></div><p class="msg" id="msg2" role="status"></p></form></div>
+<div class="card"><h2>Сообщить о поломке</h2>
+<form id="issueForm" novalidate><label for="issueT">Что случилось</label><textarea id="issueT" rows="4" maxlength="300"></textarea>
+<label for="issueF">Фото</label><input id="issueF" type="file" accept="image/*">
+<div class="row" style="margin-top:12px"><button class="btn" type="submit">Отправить</button></div><p class="msg" id="msg3" role="status"></p></form></div>
+</div>
+<div class="card"><h2>Чат с собственником</h2><ul class="chat" id="chat"></ul>
+<form id="chatForm" class="row" novalidate><input id="chatT" type="text" placeholder="Сообщение" style="flex:1"><button class="btn" type="submit">Отправить</button></form></div>
 <div class="card"><h2>История платежей</h2>
-<table><thead><tr><th>Дата</th><th>Сумма</th><th>Статус</th></tr></thead><tbody id="hist"></tbody></table></div>
-<p class="note">Учебный прототип. Вход и оплата не настоящие. <a href="#" onclick="resetDemo();return false">Сбросить демо-данные</a></p>
+<table><thead><tr><th>Дата</th><th>Назначение</th><th>Сумма</th></tr></thead><tbody id="hist"></tbody></table></div>
+<p class="note">Учебный прототип. Вход и оплата не настоящие, файлы никуда не загружаются. <a href="#" onclick="resetDemo();return false">Сбросить демо-данные</a></p>
 </main>
 <script src="assets/common.js"></script><script src="assets/tenant.js"></script>
 </body></html>
