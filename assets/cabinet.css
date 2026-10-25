@@ -1,0 +1,37 @@
+:root{--ink:#0B1B4D;--ingos:#0A3FD0;--cian:#0468FF;--cyan:#3CC8FF;--lime:#C6F432;--bg:#F4F7FF;--line:#D9E2F7;--mute:#55638C;--r:18px}
+*{box-sizing:border-box;margin:0}
+body{font:400 16px/1.55 Onest,system-ui,sans-serif;color:var(--ink);background:var(--bg)}
+h1,h2{font-family:Unbounded,Onest,sans-serif;line-height:1.2}
+.top{background:var(--ingos);color:#fff}
+.top .in{max-width:960px;margin:0 auto;padding:14px 20px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.top a{color:#fff;text-decoration:none;font-size:14px}
+.top .logo{font:700 17px Unbounded,sans-serif}
+.top nav{display:flex;gap:18px}
+main{max-width:960px;margin:0 auto;padding:32px 20px 64px}
+h1{font-size:clamp(24px,4vw,32px);margin-bottom:6px}
+.sub{color:var(--mute);margin-bottom:26px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:20px}
+.card{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:22px;margin-bottom:20px}
+.grid .card{margin:0}
+.card h2{font-size:16px;margin-bottom:12px}
+.k{color:var(--mute);font-size:13px}
+.v{font:700 26px Unbounded,sans-serif;color:var(--cian);margin-top:2px}
+.badge{display:inline-block;padding:3px 12px;border-radius:99px;font-weight:700;font-size:13px;background:var(--lime)}
+.badge.off{background:#E5E9F5;color:var(--mute)}
+.badge.wait{background:#FFE9B8}
+table{border-collapse:collapse;width:100%;font-size:15px}
+th,td{text-align:left;padding:10px 8px;border-bottom:1px solid var(--line)}
+th{color:var(--mute);font-weight:500;font-size:13px}
+.btn{background:var(--ingos);color:#fff;border:0;border-radius:12px;padding:12px 22px;font:700 15px Onest,sans-serif;cursor:pointer}
+.btn:hover{background:var(--cian)}
+.btn.alt{background:#fff;color:var(--ingos);border:2px solid var(--ingos)}
+.row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+label{display:block;font-weight:500;margin:12px 0 4px}
+input[type=number],textarea{width:100%;padding:10px;border:1px solid var(--line);border-radius:10px;font:inherit}
+.msg{margin-top:12px;font-size:14px;min-height:20px}
+.msg.err{color:#B3341F}.msg.ok{color:#0B7A3B}
+ul.claims{list-style:none;padding:0}
+ul.claims li{padding:12px 0;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:12px}
+.note{font-size:13px;color:var(--mute);margin-top:18px}
+:focus-visible{outline:3px solid var(--cyan);outline-offset:2px}
+@media(max-width:760px){.grid{grid-template-columns:1fr}}
