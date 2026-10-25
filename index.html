@@ -82,6 +82,31 @@ tr.us td{background:#F1FBD0;font-weight:500}
 .hyp .card h3{font-size:16px}
 footer{background:var(--ink);color:#B8C7F0;padding:40px 0;font-size:14px}
 footer b{color:#fff}
+.show{display:grid;grid-template-columns:1fr auto;gap:56px;align-items:center}
+.phone{width:300px;background:#0B1B4D;border-radius:42px;padding:11px;box-shadow:0 30px 60px rgba(10,63,208,.3);margin:0 auto}
+.scr{background:#F2F4F8;border-radius:32px;overflow:hidden;height:600px;position:relative;font-size:13px;line-height:1.35}
+.scr::before{content:"";position:absolute;top:8px;left:50%;width:84px;height:22px;margin-left:-42px;background:#0B1B4D;border-radius:12px;z-index:2}
+.cian-top{background:var(--cian);color:#fff;padding:40px 14px 12px}
+.cian-top b{font:700 17px Unbounded,sans-serif;letter-spacing:.02em}
+.srch{background:#fff;color:var(--mute);border-radius:10px;padding:9px 12px;margin-top:10px}
+.chips{display:flex;gap:6px;padding:10px 14px 4px;overflow:hidden;white-space:nowrap}
+.chips span{background:#fff;border:1px solid var(--line);border-radius:99px;padding:4px 10px;font-size:12px}
+.chips span.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.ad{background:#fff;margin:8px 10px;border-radius:14px;overflow:hidden;position:relative;border:2px solid transparent}
+.ad .ph{height:92px;background:linear-gradient(135deg,#C9D6EE,#E6ECF8);display:flex;align-items:flex-end;padding:8px}
+.ad .ph.b{background:linear-gradient(135deg,#9DB8F5,#D3E1FF)}
+.ad .ph.c{background:linear-gradient(135deg,#D9DEE8,#EEF1F6)}
+.ad .tx{padding:8px 12px 10px}
+.ad .tx b{display:block;font-size:15px}
+.ad .tx span{color:var(--mute);font-size:12px}
+.ad.hl{border-color:var(--lime);box-shadow:0 0 0 4px rgba(198,244,50,.45),0 10px 24px rgba(10,63,208,.25);transform:scale(1.03)}
+.pill{position:absolute;top:8px;left:8px;background:var(--ingos);color:#fff;font-weight:700;font-size:12px;padding:5px 10px;border-radius:99px;display:flex;gap:6px;align-items:center}
+.pill i{width:8px;height:8px;border-radius:50%;background:var(--lime)}
+.nodep{display:inline-block;background:var(--lime);color:var(--ink);font-weight:700;font-size:11px;padding:2px 8px;border-radius:6px;margin-top:4px}
+.show ul{list-style:none;padding:0;display:grid;gap:14px;margin-top:8px}
+.show li{padding-left:28px;position:relative}
+.show li::before{content:"";position:absolute;left:0;top:8px;width:14px;height:14px;border-radius:50%;background:var(--lime);border:3px solid var(--ingos)}
+@media(max-width:860px){.show{grid-template-columns:1fr}.scr{height:560px}}
 @media(max-width:860px){.hero-grid,.calc,.hyp{grid-template-columns:1fr}.grid3{grid-template-columns:1fr}.steps{grid-template-columns:1fr 1fr}nav ul{display:none}section{padding:52px 0}}
 @media(max-width:480px){.steps{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
@@ -110,6 +135,28 @@ footer b{color:#fff}
 <span class="tag">Расчёт по допущениям калькулятора</span>
 </div>
 </div></div>
+
+<section id="phone" style="background:#fff"><div class="wrap show">
+<div>
+<h2>Отметка прямо в выдаче Циана</h2>
+<p class="lead" style="margin-bottom:12px">Арендатор видит, какие квартиры можно снять без залога, ещё до открытия объявления.</p>
+<ul>
+<li><b>Фильтр «Без залога».</b> Можно оставить в выдаче только такие квартиры.</li>
+<li><b>Плашка ИнгоАренда.</b> Показывает, что подписка доступна, и сразу называет цену в месяц.</li>
+<li><b>Оформление в карточке.</b> Расчёт и подписка без перехода на сайт страховой.</li>
+</ul>
+<p class="note">Макет для иллюстрации идеи, это не реальный интерфейс Циана.</p>
+</div>
+<div class="phone" role="img" aria-label="Телефон с выдачей квартир на Циане. Одна квартира выделена плашкой ИнгоАренда">
+<div class="scr">
+<div class="cian-top"><b>ЦИАН</b><div class="srch">Снять квартиру · Москва</div></div>
+<div class="chips"><span class="on">Без залога</span><span>1 комн.</span><span>до 70 000 ₽</span><span>Метро</span></div>
+<div class="ad"><div class="ph c"></div><div class="tx"><b>48 000 ₽/мес</b><span>1-комн., 34 м², 5/12 эт. · м. Сокол</span></div></div>
+<div class="ad hl"><div class="ph b"></div><div class="pill"><i></i>ИнгоАренда</div><div class="tx"><b>55 000 ₽/мес</b><span>1-комн., 38 м², 8/16 эт. · м. Динамо</span><br><span class="nodep">Без залога · подписка 660 ₽/мес</span></div></div>
+<div class="ad"><div class="ph"></div><div class="tx"><b>62 000 ₽/мес</b><span>2-комн., 45 м², 3/9 эт. · м. Аэропорт</span></div></div>
+</div>
+</div>
+</div></section>
 
 <section id="problem"><div class="wrap">
 <h2>Залог — барьер на входе</h2>
