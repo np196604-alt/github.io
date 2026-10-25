@@ -1,31 +1,32 @@
-// Кабинет собственника
+// Кабинет собственника: накопления арендатора не показываем, только статус и объём защиты
 const state = load();
 function render() {
-  const s = state, c = s.contract, g = guarantee(s);
+  const s = state, c = s.contract, pl = planInfo(s), last = s.payments[s.payments.length - 1];
   $('addr').textContent = c.addr;
   $('rent').textContent = fmt(c.rent);
-  $('guar').textContent = fmt(g);
+  $('guar').textContent = s.active ? fmt(coverSum(s)) : '0 ₽';
+  $('covM').textContent = s.active ? `до ${coverMonths(s).toFixed(1).replace('.', ',')} мес. аренды` : 'Защита не действует';
   $('tenant').textContent = c.tenant;
-  const last = s.payments[s.payments.length - 1];
-  $('status').textContent = s.active ? 'Гарантия действует' : 'Гарантия не действует';
+  $('term').textContent = `${c.term} мес., с ${pad(c.start[1])}.${c.start[0]}`;
+  $('status').textContent = s.active ? 'Защита активна' : 'Защита не действует';
   $('status').className = 'badge' + (s.active ? '' : ' off');
   $('last').textContent = last ? `Последний платёж подписки: ${last.d}` : 'Платежей пока нет';
+  $('plan').textContent = s.active ? `При страховом случае: ${fmt(pl.amount)} в месяц в течение ${pl.months} мес.` : '—';
   const ul = $('claims'); ul.replaceChildren();
-  if (!s.claims.length) { const li = document.createElement('li'); li.textContent = 'Заявок пока нет.'; ul.append(li); }
+  if (!s.claims.length) { const li = document.createElement('li'); li.textContent = 'Обращений пока нет.'; ul.append(li); }
   [...s.claims].reverse().forEach(cl => {
-    const li = document.createElement('li'), a = document.createElement('span'), b = document.createElement('span');
-    a.textContent = `${cl.d} · ${cl.text}`; b.textContent = fmt(cl.a); b.style.fontWeight = '700';
-    li.append(a, b); ul.append(li);
+    const li = document.createElement('li'), a = document.createElement('span'), b = document.createElement('b');
+    a.textContent = `${cl.d} · ${cl.k} · ${cl.text} · на рассмотрении`; b.textContent = fmt(cl.a); li.append(a, b); ul.append(li);
   });
+  renderBills(s, $('bills'));
 }
 $('claimForm').onsubmit = e => {
   e.preventDefault();
-  const a = Number($('amount').value), text = $('text').value.trim();
-  if (!state.active) return show('msg', 'Гарантия не действует: подписка арендатора завершена.', 'err');
-  if (!(a > 0) || !text) return show('msg', 'Укажите сумму и опишите, что случилось.', 'err');
-  if (a > guarantee(state)) return show('msg', `Сумма больше гарантии (${fmt(guarantee(state))}).`, 'err');
-  const t = new Date();
-  state.claims.push({ d: `${pad(t.getDate())}.${pad(t.getMonth() + 1)}.${t.getFullYear()}`, a, text });
-  save(state); render(); e.target.reset(); show('msg', 'Заявка отправлена. Статус: на рассмотрении.', 'ok');
+  const a = Number($('amount').value), text = $('text').value.trim(), k = $('kind').value;
+  if (!state.active) return show('msg', 'Защита не действует: подписка закрыта.', 'err');
+  if (!(a > 0) || !text) return show('msg', 'Укажите сумму и опишите ситуацию.', 'err');
+  if (a > coverSum(state)) return show('msg', `Сумма больше покрытия (${fmt(coverSum(state))}).`, 'err');
+  state.claims.push({ d: today(), a, text, k }); save(state); render(); e.target.reset();
+  show('msg', 'Обращение передано в Ингосстрах. Статус: на рассмотрении.', 'ok');
 };
-render();
+render(); initChat(state, 'landlord');
