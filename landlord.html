@@ -7,21 +7,29 @@
 <header class="top"><div class="in"><a class="logo" href="index.html">ИнгоАренда</a>
 <nav><a href="tenant.html">Кабинет арендатора</a><a href="index.html">На главную</a></nav></div></header>
 <main>
-<h1>Кабинет собственника</h1><p class="sub">Марина С. · демо-данные</p>
+<h1>Мой объект</h1><p class="sub">Марина С. · демо-данные</p>
 <div class="grid">
-<div class="card"><div class="k">Гарантия по договору</div><div class="v" id="guar"></div></div>
+<div class="card"><div class="k">Страховая защита</div><div class="v" id="guar"></div><div class="k" id="covM"></div></div>
 <div class="card"><div class="k">Аренда в месяц</div><div class="v" id="rent"></div></div>
 <div class="card"><div class="k">Статус</div><div style="margin-top:8px"><span id="status"></span></div></div>
 </div>
-<div class="card"><h2>Мой объект</h2><p id="addr"></p>
-<p class="k">Арендатор: <span id="tenant"></span></p><p class="k" id="last"></p></div>
-<div class="card"><h2>Заявить об ущербе</h2>
+<div class="card"><h2>Договор и защита</h2><p id="addr"></p>
+<p class="k">Арендатор: <span id="tenant"></span> · Срок: <span id="term"></span></p>
+<p class="k" id="last"></p><p class="k" id="plan"></p>
+<p class="note">Вы видите статус и объём защиты, но не личные финансы арендатора и его накопления.</p></div>
+<div class="card"><h2>Заявить о страховом случае</h2>
 <form id="claimForm" novalidate>
-<label for="amount">Сумма ущерба, ₽</label><input id="amount" type="number" min="1" step="100">
-<label for="text">Что случилось</label><textarea id="text" rows="3" maxlength="300"></textarea>
-<div class="row" style="margin-top:14px"><button class="btn" type="submit">Отправить заявку</button></div>
+<label for="kind">Что случилось</label><select id="kind"><option>Арендатор не смог заплатить аренду</option><option>Ущерб имуществу</option></select>
+<label for="amount">Сумма, ₽</label><input id="amount" type="number" min="1" step="100">
+<label for="text">Подробности</label><textarea id="text" rows="3" maxlength="300"></textarea>
+<div class="row" style="margin-top:14px"><button class="btn" type="submit">Передать в Ингосстрах</button></div>
 <p class="msg" id="msg" role="status"></p></form></div>
-<div class="card"><h2>Мои заявки</h2><ul class="claims" id="claims"></ul></div>
+<div class="two">
+<div class="card"><h2>Страховые обращения</h2><ul class="claims" id="claims"></ul></div>
+<div class="card"><h2>Коммунальные платежи</h2><ul class="claims" id="bills"></ul></div>
+</div>
+<div class="card"><h2>Чат с арендатором</h2><ul class="chat" id="chat"></ul>
+<form id="chatForm" class="row" novalidate><input id="chatT" type="text" placeholder="Сообщение" style="flex:1"><button class="btn" type="submit">Отправить</button></form></div>
 <p class="note">Учебный прототип. Вход и выплаты не настоящие. <a href="#" onclick="resetDemo();return false">Сбросить демо-данные</a></p>
 </main>
 <script src="assets/common.js"></script><script src="assets/landlord.js"></script>
