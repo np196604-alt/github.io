@@ -106,6 +106,8 @@ footer b{color:#fff}
 .show ul{list-style:none;padding:0;display:grid;gap:14px;margin-top:8px}
 .show li{padding-left:28px;position:relative}
 .show li::before{content:"";position:absolute;left:0;top:8px;width:14px;height:14px;border-radius:50%;background:var(--lime);border:3px solid var(--ingos)}
+.grid3.two{grid-template-columns:repeat(2,1fr)}
+@media(max-width:860px){.grid3.two{grid-template-columns:1fr}}
 @media(max-width:860px){.show{grid-template-columns:1fr}.scr{height:560px}}
 @media(max-width:860px){.hero-grid,.calc,.hyp{grid-template-columns:1fr}.grid3{grid-template-columns:1fr}.steps{grid-template-columns:1fr 1fr}nav ul{display:none}section{padding:52px 0}}
 @media(max-width:480px){.steps{grid-template-columns:1fr}}
@@ -115,7 +117,7 @@ footer b{color:#fff}
 <body>
 <header><div class="wrap"><nav>
 <a class="logo" href="#top">Инго<span>Аренда</span></a>
-<ul><li><a href="#how">Как это работает</a></li><li><a href="#calc">Калькулятор</a></li><li><a href="#compare">Альтернативы</a></li><li><a href="#hyp">Гипотезы</a></li></ul>
+<ul><li><a href="#how">Как это работает</a></li><li><a href="#calc">Калькулятор</a></li><li><a href="#compare">Альтернативы</a></li><li><a href="#hyp">Гипотезы</a></li><li><a href="#cabinets">Кабинеты</a></li></ul>
 <a class="btn" href="#calc" style="padding:9px 18px;font-size:14px">Рассчитать</a>
 </nav></div></header>
 
@@ -238,6 +240,14 @@ footer b{color:#fff}
 <div class="card"><h3>Собственники принимают гарантию вместо залога</h3><p>Проверка: интервью с собственниками и пилот на небольшом числе объявлений.</p></div>
 <div class="card"><h3>Цена до 1 000 ₽ экономически сходится</h3><p>Проверка: расчёт убыточности по данным Ингосстраха на ущерб в аренде.</p></div>
 <div class="card"><h3>Отметка в объявлении повышает отклики</h3><p>Проверка: сравнить число откликов у объявлений с отметкой и без неё на Циане.</p></div>
+</div>
+</div></section>
+<section id="cabinets" style="background:#fff"><div class="wrap">
+<h2>Личные кабинеты</h2>
+<p class="lead">Демо-версии с тестовыми данными. Оплата арендатора сразу отражается в кабинете собственника.</p>
+<div class="grid3 two">
+<div class="card"><h3>Я арендатор</h3><p style="margin-bottom:18px">Подписка вместо залога, следующий платёж, автоплатёж и история оплат.</p><a class="btn" href="tenant.html">Открыть кабинет арендатора</a></div>
+<div class="card"><h3>Я собственник</h3><p style="margin-bottom:18px">Гарантия на три месяца аренды, статус подписки жильца и заявки об ущербе.</p><a class="btn" href="landlord.html">Открыть кабинет собственника</a></div>
 </div>
 </div></section>
 </main>
