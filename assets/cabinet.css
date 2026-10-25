@@ -35,3 +35,12 @@ ul.claims li{padding:12px 0;border-bottom:1px solid var(--line);display:flex;jus
 .note{font-size:13px;color:var(--mute);margin-top:18px}
 :focus-visible{outline:3px solid var(--cyan);outline-offset:2px}
 @media(max-width:760px){.grid{grid-template-columns:1fr}}
+.chat{list-style:none;padding:0;max-height:240px;overflow:auto;display:flex;flex-direction:column;gap:8px;margin-bottom:12px}
+.chat li{max-width:80%;padding:8px 12px;border-radius:14px;background:#EAF0FF;font-size:14px}
+.chat li.me{align-self:flex-end;background:var(--ingos);color:#fff}
+.chat small{display:block;opacity:.7;font-size:11px}
+input[type=text],select{width:100%;padding:10px;border:1px solid var(--line);border-radius:10px;font:inherit;background:#fff}
+input[type=range]{width:100%;accent-color:var(--cian)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.plans label{display:flex;gap:8px;align-items:flex-start;font-weight:400;margin:8px 0;padding:10px;border:1px solid var(--line);border-radius:12px}
+@media(max-width:760px){.two{grid-template-columns:1fr}}
