@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ИнгоАренда — съём без залога</title>
+<meta name="description" content="Подписка до 1 000 ₽ в месяц вместо залога. Собственник получает гарантию на 3 месяца аренды. Совместная идея Циана и Ингосстраха.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔑</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;700&family=Unbounded:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#0B1B4D;--ingos:#0A3FD0;--cian:#0468FF;--cyan:#3CC8FF;--lime:#C6F432;--bg:#F4F7FF;--card:#fff;--line:#D9E2F7;--mute:#55638C;--r:18px}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{font:400 17px/1.6 Onest,system-ui,sans-serif;color:var(--ink);background:var(--bg)}
+h1,h2,h3{font-family:Unbounded,Onest,sans-serif;font-weight:700;line-height:1.15;letter-spacing:-.01em}
+a{color:inherit}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+section{padding:72px 0}
+h2{font-size:clamp(26px,4vw,38px);margin-bottom:14px}
+.lead{color:var(--mute);max-width:60ch;margin-bottom:36px}
+header{position:sticky;top:0;z-index:5;background:rgba(244,247,255,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+nav{display:flex;align-items:center;justify-content:space-between;height:60px}
+.logo{font:700 18px Unbounded,sans-serif;text-decoration:none;color:var(--ingos)}
+.logo span{color:var(--cian)}
+nav ul{display:flex;gap:22px;list-style:none;padding:0;font-size:15px}
+nav a{text-decoration:none;color:var(--mute)}nav a:hover{color:var(--ink)}
+.btn{display:inline-block;background:var(--ingos);color:#fff;padding:14px 26px;border-radius:12px;font-weight:700;text-decoration:none;border:0;cursor:pointer;font-size:16px;font-family:inherit}
+.btn:hover{background:var(--cian)}
+:focus-visible{outline:3px solid var(--cyan);outline-offset:2px}
+.hero{background:var(--ingos);color:#fff;padding:80px 0 90px;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:48px;align-items:center}
+.hero h1{font-size:clamp(32px,5.6vw,58px);margin-bottom:22px}
+.hero p{font-size:19px;color:#D6E2FF;max-width:48ch;margin-bottom:30px}
+.hero .btn{background:var(--lime);color:var(--ink)}
+.hero .btn:hover{background:#fff}
+.partners{margin-top:34px;font-size:14px;color:#A9C0FF}
+.partners b{color:#fff}
+.swap{background:#fff;color:var(--ink);border-radius:var(--r);padding:26px;box-shadow:0 20px 50px rgba(0,10,60,.35)}
+.swap h3{font-size:15px;color:var(--mute);margin-bottom:16px}
+.row{display:flex;justify-content:space-between;align-items:baseline;padding:12px 0;border-bottom:1px dashed var(--line)}
+.row:last-child{border:0}
+.row s{color:var(--mute)}
+.row strong{font:700 22px Unbounded,sans-serif}
+.row.new strong{color:var(--cian)}
+.tag{display:inline-block;background:var(--lime);padding:3px 10px;border-radius:99px;font-size:13px;font-weight:700;margin-top:8px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px}
+.card h3{font-size:18px;margin-bottom:10px}
+.card p{color:var(--mute);font-size:16px}
+.stat{font:700 34px Unbounded,sans-serif;color:var(--cian);margin-bottom:6px}
+.steps{counter-reset:s;list-style:none;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.steps li{counter-increment:s;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:22px;font-size:16px}
+.steps li::before{content:counter(s);display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--ingos);color:#fff;font:700 15px Unbounded,sans-serif;margin-bottom:12px}
+.steps b{display:block;margin-bottom:4px}
+.calc{display:grid;grid-template-columns:1fr 1fr;gap:0;border-radius:var(--r);overflow:hidden;border:1px solid var(--line);background:#fff}
+.calc .in{padding:32px}
+.calc .out{background:var(--ink);color:#fff;padding:32px}
+label{display:block;font-weight:500;margin:0 0 6px}
+.val{float:right;font:700 16px Unbounded,sans-serif;color:var(--cian)}
+input[type=range]{width:100%;accent-color:var(--cian);margin-bottom:24px}
+input[type=number]{width:90px;padding:8px;border:1px solid var(--line);border-radius:8px;font:inherit}
+.big{font:700 clamp(38px,6vw,54px) Unbounded,sans-serif;color:var(--lime);line-height:1}
+.big small{font:500 16px Onest;color:#B8C7F0}
+.out p{color:#B8C7F0;font-size:15px;margin:10px 0 0}
+.kv{margin-top:22px;border-top:1px solid #29407F}
+.kv div{display:flex;justify-content:space-between;gap:12px;padding:11px 0;border-bottom:1px solid #29407F;font-size:15px}
+.kv b{color:#fff;white-space:nowrap}
+.bar{height:12px;background:#29407F;border-radius:6px;margin-top:6px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--cyan);width:0;transition:width .4s}
+.note{font-size:13px;color:var(--mute);margin-top:14px}
+.out .note{color:#8FA3D6}
+.tw{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r);background:#fff}
+table{border-collapse:collapse;width:100%;min-width:760px;font-size:15px}
+th,td{padding:14px 16px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+th{background:#EAF0FF;font-weight:700}
+tr:last-child td{border:0}
+tr.us td{background:#F1FBD0;font-weight:500}
+.y{color:#0B7A3B;font-weight:700}.n{color:#B3341F}.q{color:var(--mute)}
+.hyp{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.hyp .card h3{font-size:16px}
+footer{background:var(--ink);color:#B8C7F0;padding:40px 0;font-size:14px}
+footer b{color:#fff}
+@media(max-width:860px){.hero-grid,.calc,.hyp{grid-template-columns:1fr}.grid3{grid-template-columns:1fr}.steps{grid-template-columns:1fr 1fr}nav ul{display:none}section{padding:52px 0}}
+@media(max-width:480px){.steps{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<header><div class="wrap"><nav>
+<a class="logo" href="#top">Инго<span>Аренда</span></a>
+<ul><li><a href="#how">Как это работает</a></li><li><a href="#calc">Калькулятор</a></li><li><a href="#compare">Альтернативы</a></li><li><a href="#hyp">Гипотезы</a></li></ul>
+<a class="btn" href="#calc" style="padding:9px 18px;font-size:14px">Рассчитать</a>
+</nav></div></header>
+
+<main id="top">
+<div class="hero"><div class="wrap hero-grid">
+<div>
+<h1>Снимайте квартиру без залога</h1>
+<p>Вместо месячной аренды, замороженной на год, арендатор платит подписку до 1 000 ₽ в месяц. Собственник получает гарантию на сумму трёх месяцев аренды.</p>
+<a class="btn" href="#calc">Рассчитать подписку</a>
+<div class="partners">Идея на стыке сервисов <b>Циан</b> и страховых программ <b>Ингосстраха</b></div>
+</div>
+<div class="swap">
+<h3>Квартира за 55 000 ₽ в месяц</h3>
+<div class="row"><span>Залог при заезде</span><s><strong>55 000 ₽</strong></s></div>
+<div class="row new"><span>ИнгоАренда</span><strong>660 ₽<small style="font:500 14px Onest;color:#55638C"> / мес</small></strong></div>
+<div class="row"><span>Гарантия собственнику</span><strong>165 000 ₽</strong></div>
+<span class="tag">Расчёт по допущениям калькулятора</span>
+</div>
+</div></div>
+
+<section id="problem"><div class="wrap">
+<h2>Залог — барьер на входе</h2>
+<p class="lead">При заезде арендатор платит сразу: первый месяц, залог, иногда комиссию. У тех, кто переезжает в другой город или только начал работать, свободных денег на это часто нет. Собственнику залог нужен как защита, но платить его должен человек, у которого денег меньше всего.</p>
+<div class="grid3">
+<div class="card"><div class="stat">1–2 мес.</div><h3>Размер залога</h3><p>Типичная практика на рынке. Точную статистику для презентации возьмите из ваших опросов и открытых источников.</p></div>
+<div class="card"><div class="stat">3 мес.</div><h3>Гарантия собственнику</h3><p>Выше обычного залога. Собственник защищён лучше, чем при классической схеме.</p></div>
+<div class="card"><div class="stat">до 1 000 ₽</div><h3>Подписка в месяц</h3><p>Верхняя граница цены, которую показали исследования команды.</p></div>
+</div>
+</div></section>
+
+<section id="how" style="background:#fff"><div class="wrap">
+<h2>Как это работает</h2>
+<p class="lead">Всё происходит в карточке объявления на Циане, без отдельных заявок в страховую.</p>
+<ol class="steps">
+<li><b>Выбираете квартиру</b>У объявления стоит отметка «Аренда без залога».</li>
+<li><b>Оформляете подписку</b>Ингосстрах считает цену по параметрам объекта. Платёж не выше 1 000 ₽ в месяц.</li>
+<li><b>Собственник защищён</b>Гарантия на сумму трёх месяцев аренды закрепляется за договором.</li>
+<li><b>Съезжаете</b>Подписка заканчивается вместе с договором. Ничего возвращать не нужно.</li>
+</ol>
+<div class="grid3" style="margin-top:28px">
+<div class="card"><h3>Что даёт Циан</h3><p>Поток арендаторов и собственников, данные об объектах и ценах, точка входа в объявлении.</p></div>
+<div class="card"><h3>Что даёт Ингосстрах</h3><p>Страховая лицензия, андеррайтинг, расчёт тарифа, урегулирование убытков. В правилах компании уже есть блоки про ответственность и аренду.</p></div>
+<div class="card"><h3>Что получают люди</h3><p>Арендатор не замораживает деньги. Собственник получает гарантию больше обычного залога.</p></div>
+</div>
+</div></section>
+
+<section id="calc"><div class="wrap">
+<h2>Калькулятор подписки</h2>
+<p class="lead">Параметры тарифа — допущения команды. Их нужно проверить на финальном этапе.</p>
+<div class="calc">
+<div class="in">
+<label for="rent">Аренда в месяц <span class="val" id="rentV"></span></label>
+<input id="rent" type="range" min="20000" max="200000" step="1000" value="55000">
+<label for="term">Срок договора <span class="val" id="termV"></span></label>
+<input id="term" type="range" min="6" max="24" step="1" value="12">
+<label for="dep">Залог в обычной схеме, мес. аренды <span class="val" id="depV"></span></label>
+<input id="dep" type="range" min="1" max="3" step="1" value="1">
+<label for="rate">Доходность свободных денег, % годовых</label>
+<input id="rate" type="number" min="0" max="30" step="1" value="14">
+<p class="note">Допущения: цена = 1,2% от аренды, не меньше 390 и не больше 990 ₽ в месяц. Гарантия собственнику = 3 месяца аренды.</p>
+</div>
+<div class="out" aria-live="polite">
+<div class="big"><span id="price">0</span> ₽<small> / мес</small></div>
+<p>Стоимость подписки ИнгоАренды</p>
+<div class="kv">
+<div><span>Не нужно платить при заезде</span><b id="frozen"></b></div>
+<div><span>Подписка за весь срок</span><b id="total"></b></div>
+<div><span>Упущенный доход от залога за срок</span><b id="lost"></b></div>
+<div><span>Гарантия собственнику</span><b id="guar"></b></div>
+</div>
+<div style="margin-top:18px;font-size:14px;color:#B8C7F0">Подписка относительно суммы залога<div class="bar"><i id="bar"></i></div></div>
+<p class="note" id="verdict"></p>
+</div>
+</div>
+</div></section>
+
+<section id="compare" style="background:#fff"><div class="wrap">
+<h2>Чем это отличается от альтернатив</h2>
+<p class="lead">Данные собраны из открытых источников. Перед подачей решения проверьте актуальность каждой строки и добавьте ссылки.</p>
+<div class="tw"><table>
+<thead><tr><th>Решение</th><th>Кто платит</th><th>Заменяет залог</th><th>Гарантия собственнику</th><th>Где оформляется</th></tr></thead>
+<tbody>
+<tr class="us"><td>ИнгоАренда (идея)</td><td>Арендатор, подписка до 1 000 ₽</td><td class="y">Да</td><td class="y">3 месяца аренды</td><td>В объявлении на Циане</td></tr>
+<tr><td>Классический залог</td><td>Арендатор, разово</td><td class="n">Это и есть залог</td><td>1–2 месяца, возврат по договорённости</td><td>Напрямую с собственником</td></tr>
+<tr><td>Т-Страхование для арендодателей</td><td>Собственник, подписка</td><td class="n">Нет</td><td>Покрытие от 400 000 до 1 200 000 ₽</td><td>В приложении Т-Банка</td></tr>
+<tr><td>ПИК-Аренда и АльфаСтрахование</td><td>Арендатор</td><td class="y">Да (релиз 2019 г.)</td><td>От 1 млн ₽</td><td>У застройщика, актуальность нужно проверить</td></tr>
+<tr><td>Tenant и VUSO (Украина)</td><td>Арендатор</td><td class="y">Да</td><td class="q">Ответственность арендатора</td><td>Сервис Tenant, другой рынок</td></tr>
+<tr><td>Яндекс Аренда</td><td class="q">Нужно уточнить</td><td class="q">В найденных источниках не упоминается</td><td class="q">Нет данных</td><td>В приложении Яндекса</td></tr>
+</tbody></table></div>
+<p class="note">Главное отличие: связка с площадкой, где люди уже ищут жильё, и цена, которая сразу укладывается в 1 000 ₽ в месяц.</p>
+</div></section>
+
+<section id="hyp"><div class="wrap">
+<h2>Что проверим в финале</h2>
+<p class="lead">Самые рискованные гипотезы и способы проверки в рамках MVP на три месяца и бюджета до 5 млн ₽.</p>
+<div class="hyp">
+<div class="card"><h3>Арендаторы готовы платить подписку вместо залога</h3><p>Проверка: опрос и предзапись на лендинге, доля тех, кто выбирает подписку при реальном выборе.</p></div>
+<div class="card"><h3>Собственники принимают гарантию вместо залога</h3><p>Проверка: интервью с собственниками и пилот на небольшом числе объявлений.</p></div>
+<div class="card"><h3>Цена до 1 000 ₽ экономически сходится</h3><p>Проверка: расчёт убыточности по данным Ингосстраха на ущерб в аренде.</p></div>
+<div class="card"><h3>Отметка в объявлении повышает отклики</h3><p>Проверка: сравнить число откликов у объявлений с отметкой и без неё на Циане.</p></div>
+</div>
+</div></section>
+</main>
+
+<footer><div class="wrap"><b>ИнгоАренда</b> — учебный прототип для конкурса «Ингосстрах» им. В. И. Щербакова. Это не оферта и не страховой продукт. Тариф и условия показаны как допущения.</div></footer>
+
+<script>
+const $=id=>document.getElementById(id);
+const fmt=n=>Math.round(n).toLocaleString('ru-RU').replace(/\u00a0/g,' ')+' ₽';
+function calc(){
+  const rent=+$('rent').value, term=+$('term').value, dep=+$('dep').value;
+  const rate=Math.max(0,Math.min(30,+$('rate').value||0));
+  const price=Math.min(990,Math.max(390,Math.round(rent*0.012/10)*10));
+  const frozen=rent*dep, total=price*term, lost=frozen*rate/100*term/12;
+  $('rentV').textContent=fmt(rent);
+  $('termV').textContent=term+' мес.';
+  $('depV').textContent=dep;
+  $('price').textContent=price.toLocaleString('ru-RU');
+  $('frozen').textContent=fmt(frozen);
+  $('total').textContent=fmt(total);
+  $('lost').textContent=fmt(lost);
+  $('guar').textContent=fmt(rent*3);
+  $('bar').style.width=Math.min(100,total/frozen*100)+'%';
+  $('verdict').textContent=total>frozen
+    ? 'Подписка за весь срок дороже залога, но залог возвращают, а подписка нет. Ценность в том, что не нужно платить крупную сумму при заезде.'
+    : 'Подписка за весь срок дешевле суммы залога, и платить крупную сумму при заезде не нужно.';
+}
+document.querySelectorAll('.in input').forEach(e=>e.addEventListener('input',calc));
+calc();
+</script>
+</body>
+</html>
