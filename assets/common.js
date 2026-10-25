@@ -1,10 +1,17 @@
-// Общие данные и функции для кабинетов. Демо: данные лежат в localStorage браузера.
-const KEY = 'ingoarenda:v1';
+// Общие данные и функции кабинетов. Демо: данные лежат в localStorage браузера.
+const KEY = 'ingoarenda:v2';
+const SAVE = 0.7;   // допущение: доля ежемесячного платежа, идущая в накопление
+const PEN = 0.2;    // допущение: удержание с накопленной части платежей при досрочном закрытии
 const SEED = {
-  contract: { addr: 'Москва, ул. Верхняя, 8 (м. Динамо)', rent: 55000, term: 12, start: [2026, 9], tenant: 'Алексей К.', landlord: 'Марина С.' },
-  price: 660, active: true, autopay: true,
-  payments: [{ d: '01.09.2026', a: 660 }, { d: '01.10.2026', a: 660 }],
-  claims: []
+  contract: { addr: 'Москва, ул. Верхняя, 8 (м. Динамо)', rent: 55000, deposit: 55000, term: 11, start: [2026, 9], tenant: 'Алексей К.', landlord: 'Марина С.' },
+  monthly: 3000, plan: 'full', active: true, autopay: true,
+  payments: [{ d: '01.09.2026', m: 3000 }, { d: '01.10.2026', m: 3000 }],
+  claims: [],
+  bills: [{ d: '20.10.2026', t: 'Электричество, октябрь', a: 1850, f: 'chek_oktyabr.pdf' }],
+  chat: [
+    { r: 'landlord', d: '20.10.2026', t: 'Добрый день! Пришлите, пожалуйста, чек за электричество.' },
+    { r: 'tenant', d: '20.10.2026', t: 'Добавил в разделе коммунальных платежей.' }
+  ]
 };
 function load() {
   try { const r = localStorage.getItem(KEY); if (r) return JSON.parse(r); } catch (e) {}
@@ -15,10 +22,45 @@ function resetDemo() { try { localStorage.removeItem(KEY); } catch (e) {} locati
 const fmt = n => Math.round(n).toLocaleString('ru-RU').replace(/\u00a0/g, ' ') + ' ₽';
 const $ = id => document.getElementById(id);
 const pad = n => String(n).padStart(2, '0');
-function nextDate(s) { // дата следующего платежа
-  const [y, m] = s.contract.start, i = s.payments.length;
-  const t = new Date(y, m - 1 + i, 1);
+const today = () => { const t = new Date(); return `${pad(t.getDate())}.${pad(t.getMonth() + 1)}.${t.getFullYear()}`; };
+function show(id, text, cls) { const e = $(id); e.textContent = text; e.className = 'msg ' + (cls || ''); }
+function nextDate(s) {
+  const [y, m] = s.contract.start, t = new Date(y, m - 1 + s.payments.length, 1);
   return `01.${pad(t.getMonth() + 1)}.${t.getFullYear()}`;
 }
-function guarantee(s) { return s.contract.rent * 3; }
-function show(id, text, cls) { const e = $(id); e.textContent = text; e.className = 'msg ' + (cls || ''); }
+const sumM = s => s.payments.reduce((a, p) => a + p.m, 0);
+const savings = s => s.contract.deposit + SAVE * sumM(s);
+const paidTotal = s => s.contract.deposit + sumM(s);
+const coverMonths = s => s.monthly / 1000;       // допущение: 1 мес. аренды на каждые 1 000 ₽ платежа
+const coverSum = s => s.contract.rent * coverMonths(s);
+const forecast = s => s.contract.deposit + SAVE * (sumM(s) + s.monthly * Math.max(0, s.contract.term - s.payments.length));
+const earlyReturn = s => s.contract.deposit + SAVE * sumM(s) * (1 - PEN);
+function planInfo(s) { // полная компенсация короче, частичная (50%) вдвое дольше
+  const c = coverMonths(s), r = s.contract.rent;
+  return s.plan === 'full' ? { months: Math.floor(c), amount: r } : { months: Math.floor(c * 2), amount: r / 2 };
+}
+function renderChat(s, role) {
+  const ul = $('chat'); ul.replaceChildren();
+  s.chat.forEach(m => {
+    const li = document.createElement('li'), sm = document.createElement('small');
+    if (m.r === role) li.className = 'me';
+    sm.textContent = `${m.r === 'tenant' ? s.contract.tenant : s.contract.landlord} · ${m.d}`;
+    li.append(sm, document.createTextNode(m.t)); ul.append(li);
+  });
+  ul.scrollTop = ul.scrollHeight;
+}
+function initChat(s, role) {
+  renderChat(s, role);
+  $('chatForm').onsubmit = e => {
+    e.preventDefault(); const t = $('chatT').value.trim(); if (!t) return;
+    s.chat.push({ r: role, d: today(), t }); save(s); renderChat(s, role); $('chatT').value = '';
+  };
+}
+function renderBills(s, ul) {
+  ul.replaceChildren();
+  if (!s.bills.length) { const li = document.createElement('li'); li.textContent = 'Чеков пока нет.'; ul.append(li); }
+  [...s.bills].reverse().forEach(b => {
+    const li = document.createElement('li'), a = document.createElement('span'), c = document.createElement('b');
+    a.textContent = `${b.d} · ${b.t}${b.f ? ' · ' + b.f : ''}`; c.textContent = fmt(b.a); li.append(a, c); ul.append(li);
+  });
+}
