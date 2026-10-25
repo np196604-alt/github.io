@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Кабинет собственника — ИнгоАренда</title>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;700&family=Unbounded:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/cabinet.css"></head>
+<body>
+<header class="top"><div class="in"><a class="logo" href="index.html">ИнгоАренда</a>
+<nav><a href="tenant.html">Кабинет арендатора</a><a href="index.html">На главную</a></nav></div></header>
+<main>
+<h1>Кабинет собственника</h1><p class="sub">Марина С. · демо-данные</p>
+<div class="grid">
+<div class="card"><div class="k">Гарантия по договору</div><div class="v" id="guar"></div></div>
+<div class="card"><div class="k">Аренда в месяц</div><div class="v" id="rent"></div></div>
+<div class="card"><div class="k">Статус</div><div style="margin-top:8px"><span id="status"></span></div></div>
+</div>
+<div class="card"><h2>Мой объект</h2><p id="addr"></p>
+<p class="k">Арендатор: <span id="tenant"></span></p><p class="k" id="last"></p></div>
+<div class="card"><h2>Заявить об ущербе</h2>
+<form id="claimForm" novalidate>
+<label for="amount">Сумма ущерба, ₽</label><input id="amount" type="number" min="1" step="100">
+<label for="text">Что случилось</label><textarea id="text" rows="3" maxlength="300"></textarea>
+<div class="row" style="margin-top:14px"><button class="btn" type="submit">Отправить заявку</button></div>
+<p class="msg" id="msg" role="status"></p></form></div>
+<div class="card"><h2>Мои заявки</h2><ul class="claims" id="claims"></ul></div>
+<p class="note">Учебный прототип. Вход и выплаты не настоящие. <a href="#" onclick="resetDemo();return false">Сбросить демо-данные</a></p>
+</main>
+<script src="assets/common.js"></script><script src="assets/landlord.js"></script>
+</body></html>

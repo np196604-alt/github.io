@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Кабинет арендатора — ИнгоАренда</title>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;700&family=Unbounded:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/cabinet.css"></head>
+<body>
+<header class="top"><div class="in"><a class="logo" href="index.html">ИнгоАренда</a>
+<nav><a href="landlord.html">Кабинет собственника</a><a href="index.html">На главную</a></nav></div></header>
+<main>
+<h1>Кабинет арендатора</h1><p class="sub">Алексей К. · демо-данные</p>
+<div class="grid">
+<div class="card"><div class="k">Подписка в месяц</div><div class="v" id="price"></div></div>
+<div class="card"><div class="k">Следующий платёж</div><div class="v" id="next"></div></div>
+<div class="card"><div class="k">Статус</div><div style="margin-top:8px"><span id="status"></span></div></div>
+</div>
+<div class="card"><h2>Моя квартира</h2><p id="addr"></p><p class="k" id="rent"></p>
+<p class="k" style="margin-top:8px">Гарантия для собственника: <b id="guar"></b></p></div>
+<div class="card"><h2>Управление подпиской</h2>
+<div class="row"><button class="btn" id="pay">Оплатить сейчас</button>
+<label style="margin:0;display:flex;gap:8px;align-items:center"><input type="checkbox" id="autopay"> Автоплатёж</label>
+<button class="btn alt" id="end">Завершить подписку</button></div>
+<p class="msg" id="msg" role="status"></p></div>
+<div class="card"><h2>История платежей</h2>
+<table><thead><tr><th>Дата</th><th>Сумма</th><th>Статус</th></tr></thead><tbody id="hist"></tbody></table></div>
+<p class="note">Учебный прототип. Вход и оплата не настоящие. <a href="#" onclick="resetDemo();return false">Сбросить демо-данные</a></p>
+</main>
+<script src="assets/common.js"></script><script src="assets/tenant.js"></script>
+</body></html>
