@@ -9,26 +9,26 @@
 <main>
 <h1>Моя ИнгоАренда</h1><p class="sub">Алексей К. · демо-данные</p>
 <div class="grid">
-<div class="card"><div class="k">Накоплено</div><div class="v" id="saved"></div></div>
+<div class="card"><div class="k">Личный резерв</div><div class="v" id="saved"></div></div>
 <div class="card"><div class="k">Следующий платёж</div><div class="v" id="next"></div><div class="k" id="price"></div></div>
 <div class="card"><div class="k">Статус</div><div style="margin-top:8px"><span id="status"></span></div></div>
 </div>
 <div class="card"><h2>Договор</h2><p id="addr"></p><p class="k" id="rentline"></p>
-<p class="k" style="margin-top:8px">Внесено за всё время: <b id="paid"></b> · Защита собственника: <b id="cover"></b></p></div>
+<p class="k" style="margin-top:8px">Внесено за всё время: <b id="paid"></b> · Цена защиты (разово): <b id="prot"></b><br>Выплата сверх резерва: <b id="cover"></b></p></div>
 <div class="card"><h2>Настройте финансовую защиту</h2>
 <label for="mon">Ежемесячный платёж <span class="v" style="font-size:16px;float:right" id="monV"></span></label>
-<input id="mon" type="range" min="2000" max="3000" step="100">
+<input id="mon" type="range" min="6000" max="9000" step="500">
 <div class="plans">
 <label><input type="radio" name="plan" id="planFull" value="full"><span><b>Полная компенсация</b><br><span class="k">Аренда выплачивается целиком, срок короче</span></span></label>
 <label><input type="radio" name="plan" id="planPart" value="part"><span><b>Частичная компенсация</b><br><span class="k">Половина аренды, срок вдвое дольше</span></span></label></div>
 <p><b id="planOut"></b></p>
 <p class="k">Прогноз возврата в конце договора: <b id="forecast"></b></p>
-<p class="note">Покрытие и доли платежа — допущения. Итоговые условия рассчитывает Ингосстрах.</p></div>
+<p class="note">Все суммы ориентировочные, как в презентации. Итоговые условия рассчитывает Ингосстрах.</p></div>
 <div class="card"><h2>Управление подпиской</h2>
 <div class="row"><button class="btn" id="pay">Оплатить сейчас</button>
 <label style="margin:0;display:flex;gap:8px;align-items:center"><input type="checkbox" id="autopay"> Автоплатёж</label>
 <button class="btn alt" id="end">Закрыть досрочно</button></div>
-<p class="k" style="margin-top:10px">При досрочном закрытии к возврату: <b id="early"></b> (с удержанием по условиям договора)</p>
+<p class="k" style="margin-top:10px">При досрочном закрытии к возврату: <b id="early"></b> (удержание по шкале)</p>
 <p class="msg" id="msg" role="status"></p></div>
 <div class="two">
 <div class="card"><h2>Коммунальные платежи</h2>
