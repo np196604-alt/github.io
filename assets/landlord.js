@@ -4,8 +4,8 @@ function render() {
   const s = state, c = s.contract, pl = planInfo(s), last = s.payments[s.payments.length - 1];
   $('addr').textContent = c.addr;
   $('rent').textContent = fmt(c.rent);
-  $('guar').textContent = s.active ? fmt(coverSum(s)) : '0 ₽';
-  $('covM').textContent = s.active ? `до ${coverMonths(s).toFixed(1).replace('.', ',')} мес. аренды` : 'Защита не действует';
+  $('guar').textContent = s.active ? 'до ' + fmt(coverSum(s)) : '0 ₽';
+  $('covM').textContent = s.active ? 'примерный объём, до 2 аренд' : 'Защита не действует';
   $('tenant').textContent = c.tenant;
   $('term').textContent = `${c.term} мес., с ${pad(c.start[1])}.${c.start[0]}`;
   $('status').textContent = s.active ? 'Защита активна' : 'Защита не действует';
